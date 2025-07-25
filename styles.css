@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: "GFS Didot", serif;
+}
+
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.logo {
+    position: sticky;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    padding: 1vh;
+}
+
+.logo__AC {
+    padding: 1vh;
+    position: fixed;
+    text-align: center;
+}
+
+.CarolAndre {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 25vh 0;
+}
+
+.CarolAndre__texto {
+    color: white;
+    font-size: 64px;
+    font-weight: 100;
+}
