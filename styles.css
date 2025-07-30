@@ -4,8 +4,16 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
     font-family: "GFS Didot", serif;
+}
+
+:root {
+    --cor-primaria: #FFFFFF;
+    --cor-secundaria: #F9ECDB;
+    --marrom-claro: #8C7A6B;
+    --marrom-medio: #87705D;
+    --marrom-escuro: #6C5A4A;
 }
 
 .video-bg {
@@ -15,16 +23,6 @@ html, body {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
-    z-index: -1;
-}
-
-.filtro-escuro {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.3);
     z-index: -1;
 }
 
@@ -42,15 +40,65 @@ html, body {
     text-align: center;
 }
 
-.CarolAndre {
+.inicio {
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    height: 140vh;
+    padding: 22vh 5vh;
+}
+
+.inicio__CarolAndre {
+    position: fixed;
     display: flex;
     justify-content: center;
     text-align: center;
-    padding: 22vh 0;
+    z-index: -1;
 }
 
-.CarolAndre__texto {
+.inicio__CarolAndre__texto {
     color: white;
     font-size: 64px;
     font-weight: 100;
 }
+
+.inicio__fotos {
+    padding: 80vh 0 0;
+    display: grid;
+    grid-template-columns: 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px;
+    grid-template-rows: 42px 42px 42px 42px 42px 42px 42px 42px 42px 42px;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        scale: 0.5;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+.inicio__fotos__foto1 {
+    grid-area: 1 / 4 / 7 / 9;
+    z-index: 3;
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0;
+}
+
+.inicio__fotos__foto2 {
+    grid-area: 6 / 6 / 6 / 6;
+    z-index: 2;
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0;}
+
+.inicio__fotos__foto3 {
+    grid-area: 4 / 1 / 6 / 4;
+    width: 203.25px;
+    animation: appear linear;   
+    animation-timeline: view();
+    animation-range: entry 0;}
+
