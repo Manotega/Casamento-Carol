@@ -26,7 +26,7 @@ html, body {
     display: flex;
     justify-content: center;
     padding: 1vh;
-    z-index: 4;
+    z-index: 10;
 }
 
 .logo__AC {
@@ -134,23 +134,23 @@ html, body {
 
 .convite__salmo {
     color: var(--marrom-escuro);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 100;
     text-align: center;
-    padding: 2vh 0 0;
+    padding: 7vh 0 0;
 }
 
 .convite__convidamos {
     color: var(--marrom-escuro);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 100;
     text-align: center;
-    padding: 9vh 0;
+    padding: 9vh 12.5vh;
 }
 
 .convite__pais {
     color: var(--marrom-escuro);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 100;
     text-align: center;
     display: flex;
@@ -163,7 +163,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 9vh 0 15vh;
+    padding: 9vh 10vh 10vh;
 }
 
 .convite__data-local__data {
@@ -193,6 +193,15 @@ html, body {
     padding: 5vh 0;
 }
 
+.presenca__logo {
+    position: absolute;
+    top: 2vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: auto;
+}
+
 .presenca__container {
     display: flex;
     flex-direction: column;
@@ -219,6 +228,7 @@ html, body {
     font-size: 16px;
     width: 105%;
     outline: none;
+    cursor: all-scroll;
 }
 
 .presenca__textbox::placeholder {
@@ -226,7 +236,7 @@ html, body {
 }
 
 .presenca__botao {
-    padding: 0.75vh 3vh;
+    padding: 1vh 4vh;
     border: 2px solid #021F31;
     border-radius: 8px;
     background: #4D7A8F;
@@ -244,8 +254,7 @@ html, body {
 }
 
 .presenca__botao:active {
-    background-color: #4D7A8F;
-    box-shadow: inset 0 0 10px white;
+    background-color: white;
 }
 
 .presenca__texto-secundario {
@@ -284,9 +293,9 @@ html, body {
     position: sticky;
     top: 0;
     width: 100%;
-    background-image: url('assets/fundo_presentes.svg');
+    background-image: url('assets/fundo_marrom.svg');
     background-size: 100% auto;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-position: top center;
     z-index: 7;
     display: flex;
@@ -296,43 +305,88 @@ html, body {
 }
 
 .presentes-mensagem__logo {
+    position: absolute;
+    top: 2vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
     height: auto;
-    margin-bottom: 4vh;
+    z-index: -1;
 }
 
 .presentes-mensagem__titulo {
-    color: var(--marrom-escuro);
-    font-size: 28px;
+    color: var(--cor-secundaria);
+    font-size: 36px;
     font-weight: 100;
     text-align: center;
-    margin-bottom: 4vh;
+    padding: 5vh 0 5vh;
 }
 
 .presentes-mensagem__texto {
-    color: var(--marrom-escuro);
-    font-size: 14px;
+    color: var(--cor-secundaria);
+    font-size: 16px;
     font-weight: 100;
     text-align: center;
-    line-height: 1.6;
-    margin-bottom: 5vh;
-    max-width: 600px;
-    padding: 0 4vh;
+    line-height: 1.4;
+    padding: 0 3vh 8vh;
 }
 
 .presentes-mensagem__botao {
-    padding: 1.5vh 4vh;
+    margin: 2vh 0;
+    padding: 0.5vh 4vh;
     border: 2px solid var(--marrom-escuro);
-    border-radius: 5px;
-    background: transparent;
+    border-radius: 8px;
+    background-color: var(--cor-secundaria);
     color: var(--marrom-escuro);
-    font-family: "GFS Didot", serif;
-    font-size: 16px;
+    font-size: 20px;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
-.presentes-mensagem__botao:hover {
-    background: var(--marrom-escuro);
-    color: white;
+.presentes-mensagem__botao:hover{
+    background-color: var(--marrom-medio);
+    color: var(--cor-primaria);
+    border: 2px solid white;
+}
+
+.presentes-mensagem__botao:active {
+    background-color: white;
+}
+
+.final {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-image: url('assets/fundo_final.svg');
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: top center;
+    z-index: 11;
+}
+
+.final__fundo {
+    opacity: 0;
+    max-width: 100%;
+}
+
+.final__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+.final__container__elipse {
+    width: 45%;
+    padding: 37% 0;
+    position: absolute;
+}
+
+.final__container__texto {
+    width: 32%;
+    position: absolute;
+    padding: 40% 0;
+    color: #38485F;
+    font-size: 24px;
+    text-align: center;
+    line-height: 1.5;
 }
