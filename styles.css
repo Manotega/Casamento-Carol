@@ -3,9 +3,13 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
-    /* overflow: hidden; */
+    min-height: 100%;
     font-family: "GFS Didot", serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
 }
 
 :root {
@@ -16,22 +20,13 @@ html, body {
     --marrom-escuro: #6C5A4A;
 }
 
-.video-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: -1;
-}
-
 .logo {
     position: sticky;
     height: 5vh;
     display: flex;
     justify-content: center;
     padding: 1vh;
+    z-index: 4;
 }
 
 .logo__AC {
@@ -41,11 +36,23 @@ html, body {
 }
 
 .inicio {
+    position: relative;
     display: flex;
     justify-content:space-between;
     flex-direction: column;
+    align-items: center;
     height: 140vh;
     padding: 22vh 5vh;
+}
+
+.inicio__video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
 }
 
 .inicio__CarolAndre {
@@ -86,7 +93,7 @@ html, body {
     border: 1px solid var(--cor-primaria);
     opacity: 0;
     transform: scale(0.5);
-    transition: opacity 1.2s ease-out, transform 0.6s ease-out;
+    transition: opacity 1s ease-out, transform 0.6s ease-out;
 }
 
 .inicio__fotos__foto1.visivel,
@@ -111,4 +118,221 @@ html, body {
 .inicio__fotos__foto3 {
     grid-area: 4 / 1 / 6 / 4;
     width: 201.6px;
+}
+
+.convite {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-image: url('assets/fundo_convite.svg');
+    background-size: 100% auto;
+    background-repeat:unset;
+    background-position: top center;
+    z-index: 5;
+}
+
+
+.convite__salmo {
+    color: var(--marrom-escuro);
+    font-size: 10px;
+    font-weight: 100;
+    text-align: center;
+    padding: 2vh 0 0;
+}
+
+.convite__convidamos {
+    color: var(--marrom-escuro);
+    font-size: 10px;
+    font-weight: 100;
+    text-align: center;
+    padding: 9vh 0;
+}
+
+.convite__pais {
+    color: var(--marrom-escuro);
+    font-size: 10px;
+    font-weight: 100;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4vh 0 2vh;
+}
+
+.convite__data-local {
+    color: var(--marrom-escuro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 9vh 0 15vh;
+}
+
+.convite__data-local__data {
+    font-size: 24px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.convite__data-local__local {
+    font-size: 10px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.presenca {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-image: url('assets/fundo azul.svg');
+    background-size: 100% auto;
+    background-repeat:repeat;
+    background-position: top center;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5vh 0;
+}
+
+.presenca__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2vh;
+    padding: 8vh 0 4vh;
+}
+
+.presenca__container__titulo {
+    color: white;
+    font-size: 24px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.presenca__textbox {
+    padding: 1vh 1vh;
+    border: 2px solid #A1A1A1;
+    border-radius: 8px;
+    background: var(--cor-primaria);
+    color: black;
+    font-family: "GFS Didot", serif;
+    font-size: 16px;
+    width: 105%;
+    outline: none;
+}
+
+.presenca__textbox::placeholder {
+    color: #A1A1A1;
+}
+
+.presenca__botao {
+    padding: 0.75vh 3vh;
+    border: 2px solid #021F31;
+    border-radius: 8px;
+    background: #4D7A8F;
+    color: white;
+    font-family: "GFS Didot", serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.presenca__botao:hover{
+    background-color: #021F31;
+    color: var(--cor-primaria);
+    border: 2px solid white;
+}
+
+.presenca__botao:active {
+    background-color: #4D7A8F;
+    box-shadow: inset 0 0 10px white;
+}
+
+.presenca__texto-secundario {
+    text-align: center;
+    color: var(--cor-primaria);
+    padding: 4vh 0 8vh;
+}
+
+.presenca__texto-secundario__titulo {
+    font-size: 24px;
+    font-weight: 100;
+}
+
+.presenca__texto-secundario__texto {
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.presenca__contador {
+    text-align: center;
+}
+
+.presenca__contador__texto {
+    color: white;
+    font-size: 24px;
+    font-weight: 100;
+}
+
+.presenca__contador__dias {
+    color: white;
+    font-size: 64px;
+    font-weight: 100;
+}
+
+.presentes-mensagem {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-image: url('assets/fundo_presentes.svg');
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: top center;
+    z-index: 7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8vh 0;
+}
+
+.presentes-mensagem__logo {
+    height: auto;
+    margin-bottom: 4vh;
+}
+
+.presentes-mensagem__titulo {
+    color: var(--marrom-escuro);
+    font-size: 28px;
+    font-weight: 100;
+    text-align: center;
+    margin-bottom: 4vh;
+}
+
+.presentes-mensagem__texto {
+    color: var(--marrom-escuro);
+    font-size: 14px;
+    font-weight: 100;
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 5vh;
+    max-width: 600px;
+    padding: 0 4vh;
+}
+
+.presentes-mensagem__botao {
+    padding: 1.5vh 4vh;
+    border: 2px solid var(--marrom-escuro);
+    border-radius: 5px;
+    background: transparent;
+    color: var(--marrom-escuro);
+    font-family: "GFS Didot", serif;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.presentes-mensagem__botao:hover {
+    background: var(--marrom-escuro);
+    color: white;
 }
