@@ -80,25 +80,35 @@ html, body {
     }
 }
 
-.inicio__fotos__foto1 {
-    grid-area: 1 / 4 / 7 / 9;
-    z-index: 3;
-    animation: appear linear;
-    animation-timeline: view();
-    animation-range: entry 0 cover 40%;
+.inicio__fotos__foto1,
+.inicio__fotos__foto2,
+.inicio__fotos__foto3 {
+    border: 1px solid var(--cor-primaria);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 1.2s ease-out, transform 0.6s ease-out;
 }
 
-.inicio__fotos__foto2 {
-    grid-area: 6 / 6 / 6 / 6;
+.inicio__fotos__foto1.visivel,
+.inicio__fotos__foto2.visivel,
+.inicio__fotos__foto3.visivel {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.inicio__fotos__foto1 {
+    grid-area: 1 / 4 / 7 / 10;
+    z-index: 3;
+    width: 201.6px;
+}
+
+.inicio__fotos__foto2 {    
+    grid-area: 6 / 6 / 11 / 11;
+    width: 168px;
     z-index: 2;
-    animation: appear linear;
-    animation-timeline: view();
-    animation-range: entry 0 cover 40%;}
+}
 
 .inicio__fotos__foto3 {
     grid-area: 4 / 1 / 6 / 4;
-    width: 203.25px;
-    animation: appear linear;   
-    animation-timeline: view();
-    animation-range: entry 0 cover 40%;}
-
+    width: 201.6px;
+}
