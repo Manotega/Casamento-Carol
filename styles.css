@@ -85,7 +85,7 @@ html, body {
     z-index: 3;
     animation: appear linear;
     animation-timeline: view();
-    animation-range: entry 0;
+    animation-range: entry 0 cover 40%;
 }
 
 .inicio__fotos__foto2 {
@@ -93,12 +93,12 @@ html, body {
     z-index: 2;
     animation: appear linear;
     animation-timeline: view();
-    animation-range: entry 0;}
+    animation-range: entry 0 cover 40%;}
 
 .inicio__fotos__foto3 {
     grid-area: 4 / 1 / 6 / 4;
     width: 203.25px;
     animation: appear linear;   
     animation-timeline: view();
-    animation-range: entry 0;}
+    animation-range: entry 0 cover 40%;}
 
