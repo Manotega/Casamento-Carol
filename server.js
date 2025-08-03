@@ -133,6 +133,90 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Endpoint de administração para gerenciar convidados
+app.post('/api/admin/manage', (req, res) => {
+  console.log('POST /api/admin/manage called');
+  console.log('Request body:', req.body);
+  
+  const { action, name, newName } = req.body;
+  
+  try {
+    const db = readDatabase();
+    
+    switch (action) {
+      case 'delete':
+        // Remover um convidado específico
+        const deleteIndex = db.guests.findIndex(guest => 
+          guest.name.toLowerCase() === name.toLowerCase()
+        );
+        
+        if (deleteIndex > -1) {
+          const removedGuest = db.guests.splice(deleteIndex, 1)[0];
+          writeDatabase(db);
+          res.json({ 
+            success: true, 
+            message: `Convidado "${removedGuest.name}" removido`,
+            removed: removedGuest
+          });
+        } else {
+          res.json({ 
+            success: false, 
+            message: 'Convidado não encontrado' 
+          });
+        }
+        break;
+        
+      case 'edit':
+        // Editar nome de um convidado
+        const editIndex = db.guests.findIndex(guest => 
+          guest.name.toLowerCase() === name.toLowerCase()
+        );
+        
+        if (editIndex > -1) {
+          db.guests[editIndex].name = newName;
+          db.guests[editIndex].updatedAt = new Date().toISOString();
+          writeDatabase(db);
+          res.json({ 
+            success: true, 
+            message: `Nome alterado de "${name}" para "${newName}"`,
+            updated: db.guests[editIndex]
+          });
+        } else {
+          res.json({ 
+            success: false, 
+            message: 'Convidado não encontrado' 
+          });
+        }
+        break;
+        
+      case 'clear':
+        // Limpar toda a lista
+        db.guests = [];
+        db.clearedAt = new Date().toISOString();
+        writeDatabase(db);
+        res.json({ 
+          success: true, 
+          message: 'Lista de convidados limpa',
+          total: 0
+        });
+        break;
+        
+      default:
+        res.json({ 
+          success: false, 
+          message: 'Ação não reconhecida. Use: delete, edit, ou clear' 
+        });
+    }
+    
+  } catch (error) {
+    console.error('Error managing guests:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Erro interno do servidor' 
+    });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`Database file: ${dbPath}`);
