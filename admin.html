@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Carolina e André</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            font-family: monospace;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .danger {
+            background: #f44336;
+        }
+        .danger:hover {
+            background: #da190b;
+        }
+        .guest-item {
+            background: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .delete-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Administração - Lista de Convidados</h1>
+        
+        <h2>Convidados Confirmados</h2>
+        <div id="guestsList"></div>
+        
+        <h2>Editar JSON Manualmente</h2>
+        <textarea id="jsonEditor" placeholder="Cole o JSON aqui..."></textarea>
+        <br><br>
+        <button onclick="loadGuests()">Carregar Dados</button>
+        <button onclick="saveGuests()">Salvar Alterações</button>
+        <button class="danger" onclick="clearAll()">Limpar Tudo</button>
+        
+        <h2>Adicionar Convidado</h2>
+        <input type="text" id="newGuestName" placeholder="Nome do convidado">
+        <button onclick="addGuest()">Adicionar</button>
+    </div>
+
+    <script>
+        // Carregar convidados
+        async function loadGuests() {
+            try {
+                const response = await fetch('/api/guests');
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('jsonEditor').value = JSON.stringify(data, null, 2);
+                    displayGuests(data.guests);
+                }
+            } catch (error) {
+                alert('Erro ao carregar dados: ' + error.message);
+            }
+        }
+
+        // Salvar alterações
+        async function saveGuests() {
+            try {
+                const jsonText = document.getElementById('jsonEditor').value;
+                const data = JSON.parse(jsonText);
+                
+                // Aqui você pode implementar a lógica para salvar
+                // Por enquanto, vamos recarregar para ver as mudanças
+                alert('JSON atualizado! Recarregue a página para ver as mudanças.');
+                loadGuests();
+            } catch (error) {
+                alert('Erro no JSON: ' + error.message);
+            }
+        }
+
+        // Limpar tudo
+        async function clearAll() {
+            if (confirm('Tem certeza que quer limpar toda a lista?')) {
+                try {
+                    const response = await fetch('/api/admin/manage', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ action: 'clear' })
+                    });
+                    const data = await response.json();
+                    alert(data.message);
+                    loadGuests();
+                } catch (error) {
+                    alert('Erro: ' + error.message);
+                }
+            }
+        }
+
+        // Adicionar convidado
+        async function addGuest() {
+            const name = document.getElementById('newGuestName').value.trim();
+            if (!name) {
+                alert('Digite um nome!');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/confirm-presence', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: name })
+                });
+                const data = await response.json();
+                alert(data.message);
+                document.getElementById('newGuestName').value = '';
+                loadGuests();
+            } catch (error) {
+                alert('Erro: ' + error.message);
+            }
+        }
+
+        // Remover convidado
+        async function deleteGuest(name) {
+            if (confirm(`Remover "${name}"?`)) {
+                try {
+                    const response = await fetch('/api/admin/manage', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ action: 'delete', name: name })
+                    });
+                    const data = await response.json();
+                    alert(data.message);
+                    loadGuests();
+                } catch (error) {
+                    alert('Erro: ' + error.message);
+                }
+            }
+        }
+
+        // Exibir lista de convidados
+        function displayGuests(guests) {
+            const container = document.getElementById('guestsList');
+            container.innerHTML = '';
+            
+            guests.forEach(guest => {
+                const div = document.createElement('div');
+                div.className = 'guest-item';
+                div.innerHTML = `
+                    <span>${guest.name} - ${new Date(guest.confirmedAt).toLocaleString('pt-BR')}</span>
+                    <button class="delete-btn" onclick="deleteGuest('${guest.name}')">Remover</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Carregar dados ao abrir a página
+        loadGuests();
+    </script>
+</body>
+</html> 
