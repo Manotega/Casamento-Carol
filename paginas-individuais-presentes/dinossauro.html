@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presente - Godzilla | Carol e André</title>
+  <link rel="icon" type="image/png" href="../assets/logos/A_C.svg">
+  <link rel="stylesheet" href="../styles-presentes.css">
+  <style>
+    .presente-individual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 5vh 2vh;
+      min-height: 80vh;
+    }
+    
+    .presente-individual__titulo {
+      color: var(--marrom-escuro);
+      font-size: 2rem;
+      font-weight: 100;
+      text-align: center;
+      margin-bottom: 3vh;
+    }
+    
+    .presente-individual__imagem {
+      width: 200px;
+      height: 200px;
+      margin-bottom: 3vh;
+    }
+    
+    .presente-individual__descricao {
+      color: var(--marrom-escuro);
+      font-size: 1.2rem;
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 4vh;
+      max-width: 600px;
+    }
+    
+    .presente-individual__preco {
+      color: var(--marrom-escuro);
+      font-size: 2.5rem;
+      font-weight: 100;
+      margin-bottom: 4vh;
+    }
+    
+    .presente-individual__botao {
+      padding: 2vh 6vh;
+      border: 2px solid var(--marrom-escuro);
+      border-radius: 16px;
+      background-color: var(--cor-secundaria);
+      color: var(--marrom-escuro);
+      font-size: 1.5rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    .presente-individual__botao:hover {
+      background-color: var(--marrom-medio);
+      color: var(--cor-primaria);
+      border: 2px solid white;
+      transform: translateY(-1px);
+    }
+    
+    .presente-individual__botao:active {
+      background-color: white;
+      transform: translateY(0) scale(0.98);
+      transition: all 0.08s ease;
+    }
+  </style>
+</head>
+<header>
+    <a href="../presentes.html"><img src="../assets/home.svg" alt="Voltar para a página de presentes" class="header__botao"></a>
+</header>
+<body>
+  <div class="logo">
+    <img src="../assets/logos/logo_desenho.svg" alt="Logo Carol e Andre amor eterno" class="logo__desenho">
+  </div>
+
+  <section class="presente-individual">
+    <h1 class="presente-individual__titulo">Godzilla</h1>
+    <img src="../assets/presentes/dinossauro.svg" alt="Ícone de Godzilla" class="presente-individual__imagem">
+    <p class="presente-individual__descricao">
+      Motivar o André a virar o Godzilla e aterrorizar Tokyo. Uma transformação épica!
+    </p>
+    <span class="presente-individual__preco">R$ 1000.00</span>
+    <a href="#" class="presente-individual__botao">
+      <span>貧しい</span><br>
+      <span>Comprar</span>
+    </a>
+  </section>
+</body>
+<footer>
+    <section class="footer__lucas">
+      <div class="footer__lucas__texto">
+        <p class="footer__lucas__texto__texto">Projetado e desenvolvido por</p>
+        <p class="footer__lucas__texto__texto">Lucas Manteiga de Castro</p>
+      </div>
+      <div class="footer__lucas__redes">
+        <a href="https://www.instagram.com/manotegaa" target="_blank"><img src="../assets/logos/instagram.svg" alt="Instagram" class="footer__lucas__redes__rede"></a>
+        <a href="https://www.linkedin.com/in/lucas-manteiga-de-castro" target="_blank"><img src="../assets/logos/linkedin.svg" alt="LinkedIn" class="footer__lucas__redes__rede"></a>
+        <a href="https://github.com/Manotega" target="_blank"><img src="../assets/logos/github.svg" alt="GitHub" class="footer__lucas__redes__rede"></a>
+      </div>
+      <span class="footer__lucas__copyright">Copyright © 2025. Lucas Manteiga. All rights reserved</span>
+    </section>
+</footer>
+</html>

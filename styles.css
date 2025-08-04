@@ -69,7 +69,7 @@ body {
 
 .inicio__CarolAndre__texto {
     color: white;
-    font-size: 64px;
+    font-size: 4rem;
     font-weight: 100;
 }
 
@@ -138,7 +138,7 @@ body {
 
 .convite__salmo {
     color: var(--marrom-escuro);
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 100;
     text-align: center;
     padding: 7vh 0 0;
@@ -146,7 +146,7 @@ body {
 
 .convite__convidamos {
     color: var(--marrom-escuro);
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 100;
     text-align: center;
     padding: 9vh 12.5vh;
@@ -154,7 +154,7 @@ body {
 
 .convite__pais {
     color: var(--marrom-escuro);
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 100;
     text-align: center;
     display: flex;
@@ -171,13 +171,13 @@ body {
 }
 
 .convite__data-local__data {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 100;
     text-align: center;
 }
 
 .convite__data-local__local {
-    font-size: 10px;
+    font-size: 0.625rem;
     font-weight: 100;
     text-align: center;
 }
@@ -217,7 +217,7 @@ body {
 
 .presenca__container__titulo {
     color: white;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 100;
     text-align: center;
 }
@@ -229,7 +229,7 @@ body {
     background: var(--cor-primaria);
     color: black;
     font-family: "GFS Didot", serif;
-    font-size: 16px;
+    font-size: 1rem;
     width: 105%;
     outline: none;
 }
@@ -245,19 +245,47 @@ body {
     background: #4D7A8F;
     color: white;
     font-family: "GFS Didot", serif;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.presenca__botao::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
 }
 
 .presenca__botao:hover{
     background-color: #021F31;
     color: var(--cor-primaria);
     border: 2px solid white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .presenca__botao:active {
     background-color: white;
+    color: #021F31;
+    transform: translateY(0) scale(0.95);
+    transition: all 0.1s ease;
+}
+
+.presenca__botao:active::before {
+    width: 300px;
+    height: 300px;
+    transition: width 0.3s, height 0.3s;
 }
 
 .presenca__texto-secundario {
@@ -267,12 +295,12 @@ body {
 }
 
 .presenca__texto-secundario__titulo {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 100;
 }
 
 .presenca__texto-secundario__texto {
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 100;
 }
 
@@ -282,13 +310,13 @@ body {
 
 .presenca__contador__texto {
     color: white;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 100;
 }
 
 .presenca__contador__dias {
     color: white;
-    font-size: 64px;
+    font-size: 4rem;
     font-weight: 100;
 }
 
@@ -319,7 +347,7 @@ body {
 
 .presentes-mensagem__titulo {
     color: var(--cor-secundaria);
-    font-size: 36px;
+    font-size: 2.25rem;
     font-weight: 100;
     text-align: center;
     padding: 5vh 0 5vh;
@@ -327,7 +355,7 @@ body {
 
 .presentes-mensagem__texto {
     color: var(--cor-secundaria);
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 100;
     text-align: center;
     line-height: 1.4;
@@ -341,19 +369,25 @@ body {
     border-radius: 8px;
     background-color: var(--cor-secundaria);
     color: var(--marrom-escuro);
-    font-size: 20px;
+    font-size: 1.25rem;
     text-decoration: none;
     cursor: pointer;
+    transition: all 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .presentes-mensagem__botao:hover{
     background-color: var(--marrom-medio);
     color: var(--cor-primaria);
     border: 2px solid white;
+    transform: translateY(-2px);
 }
 
 .presentes-mensagem__botao:active {
     background-color: white;
+    color: var(--marrom-escuro);
+    transform: translateY(0) scale(0.98);
+    transition: all 0.08s ease;
 }
 
 .final {
@@ -395,7 +429,7 @@ body {
     position: absolute;
     padding: 20% 0;
     color: #38485F;
-    font-size: 26px;
+    font-size: 1.625rem;
     text-align: center;
 }
 
@@ -419,7 +453,7 @@ footer {
     gap: 2.5vh;
     padding: 20% 0 3%;
     color: white;
-    font-size: 16px;
+    font-size: 1rem;
     text-align: center;
 }
 
@@ -436,13 +470,13 @@ footer {
 
 .footer__lucas__redes {
     display: flex;
-    gap: 10vh;
+    gap: 11vh;
 }
 
 .footer__lucas__redes__rede {
-    width: 200%;
+    width: 220%;
 }
 
 .footer__lucas__copyright {
-    font-size: 12px;
+    font-size: 0.75rem;
 }
