@@ -7,6 +7,10 @@ html, body {
     font-family: "GFS Didot", serif;
 }
 
+body {
+    z-index: 10;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -379,7 +383,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40% 0 60%;
+    padding: 30% 0 60%;
 }
 
 .final__container__texto {
@@ -393,4 +397,52 @@ html, body {
     color: #38485F;
     font-size: 26px;
     text-align: center;
+}
+
+footer {
+    position: relative;
+    padding: 10% 0 0;
+    margin: 45% 0 0;
+    background-color: #14253E;
+    z-index: 12;
+}
+
+.footer__logo {
+    width: 50%;
+    padding: 5% 0 15% 5%;
+}
+
+.footer__lucas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5vh;
+    padding: 20% 0 3%;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+}
+
+.footer__lucas__texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25vh;
+}
+
+.footer__lucas__texto__texto {
+    font-weight: 100;
+}
+
+.footer__lucas__redes {
+    display: flex;
+    gap: 10vh;
+}
+
+.footer__lucas__redes__rede {
+    width: 200%;
+}
+
+.footer__lucas__copyright {
+    font-size: 12px;
 }
