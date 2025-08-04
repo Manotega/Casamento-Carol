@@ -1,61 +1,37 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const fs = require('fs');
-const path = require('path');
+const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Supabase configuration
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static('.')); // Serve static files from current directory
 
-// Database file path
-const dbPath = path.join(__dirname, 'guests.json');
-
-// Initialize database if it doesn't exist
-function initializeDatabase() {
-  if (!fs.existsSync(dbPath)) {
-    const initialData = {
-      guests: [],
-      createdAt: new Date().toISOString()
-    };
-    fs.writeFileSync(dbPath, JSON.stringify(initialData, null, 2));
-  }
-}
-
-// Read database
-function readDatabase() {
-  try {
-    const data = fs.readFileSync(dbPath, 'utf8');
-    return JSON.parse(data);
-  } catch (error) {
-    console.error('Error reading database:', error);
-    return { guests: [] };
-  }
-}
-
-// Write to database
-function writeDatabase(data) {
-  try {
-    fs.writeFileSync(dbPath, JSON.stringify(data, null, 2));
-    return true;
-  } catch (error) {
-    console.error('Error writing to database:', error);
-    return false;
-  }
-}
-
-// Initialize database on startup
-initializeDatabase();
+// Add logging middleware
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+  next();
+});
 
 // API Routes
-app.post('/api/confirm-presence', (req, res) => {
+app.post('/api/confirm-presence', async (req, res) => {
+  console.log('POST /api/confirm-presence called');
+  console.log('Request body:', req.body);
+  
   try {
     const { name } = req.body;
     
     if (!name || name.trim() === '') {
+      console.log('Empty name provided');
       return res.status(400).json({ 
         success: false, 
         message: 'Nome é obrigatório' 
@@ -63,14 +39,24 @@ app.post('/api/confirm-presence', (req, res) => {
     }
 
     const trimmedName = name.trim();
-    const db = readDatabase();
+    console.log('Processing name:', trimmedName);
     
     // Check if name already exists
-    const existingGuest = db.guests.find(guest => 
-      guest.name.toLowerCase() === trimmedName.toLowerCase()
-    );
+    const { data: existingGuests, error: checkError } = await supabase
+      .from('guests')
+      .select('name')
+      .ilike('name', trimmedName);
     
-    if (existingGuest) {
+    if (checkError) {
+      console.error('Error checking existing guest:', checkError);
+      return res.status(500).json({ 
+        success: false, 
+        message: 'Erro ao verificar convidado existente' 
+      });
+    }
+    
+    if (existingGuests && existingGuests.length > 0) {
+      console.log('Name already exists:', trimmedName);
       return res.status(409).json({ 
         success: false, 
         message: 'Este nome já foi confirmado' 
@@ -78,25 +64,25 @@ app.post('/api/confirm-presence', (req, res) => {
     }
 
     // Add new guest
-    const newGuest = {
-      name: trimmedName,
-      confirmedAt: new Date().toISOString()
-    };
+    const { data: newGuest, error: insertError } = await supabase
+      .from('guests')
+      .insert([{ name: trimmedName }])
+      .select();
     
-    db.guests.push(newGuest);
-    
-    if (writeDatabase(db)) {
-      res.json({ 
-        success: true, 
-        message: 'Presença confirmada com sucesso!',
-        guest: newGuest
-      });
-    } else {
-      res.status(500).json({ 
+    if (insertError) {
+      console.error('Error inserting guest:', insertError);
+      return res.status(500).json({ 
         success: false, 
         message: 'Erro ao salvar confirmação' 
       });
     }
+    
+    console.log('Guest saved successfully:', newGuest[0]);
+    res.json({ 
+      success: true, 
+      message: 'Presença confirmada com sucesso!',
+      guest: newGuest[0]
+    });
     
   } catch (error) {
     console.error('Error confirming presence:', error);
@@ -107,14 +93,28 @@ app.post('/api/confirm-presence', (req, res) => {
   }
 });
 
-// Get all confirmed guests (optional - for admin purposes)
-app.get('/api/guests', (req, res) => {
+// Get all confirmed guests
+app.get('/api/guests', async (req, res) => {
+  console.log('GET /api/guests called');
   try {
-    const db = readDatabase();
+    const { data: guests, error } = await supabase
+      .from('guests')
+      .select('*')
+      .order('confirmed_at', { ascending: false });
+    
+    if (error) {
+      console.error('Error getting guests:', error);
+      return res.status(500).json({ 
+        success: false, 
+        message: 'Erro ao buscar convidados' 
+      });
+    }
+    
+    console.log('Returning guests:', guests.length);
     res.json({ 
       success: true, 
-      guests: db.guests,
-      total: db.guests.length
+      guests: guests || [],
+      total: guests ? guests.length : 0
     });
   } catch (error) {
     console.error('Error getting guests:', error);
@@ -127,36 +127,45 @@ app.get('/api/guests', (req, res) => {
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
+  console.log('GET /api/health called');
   res.json({ 
     status: 'OK', 
-    timestamp: new Date().toISOString() 
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development',
+    database: 'Supabase'
   });
 });
 
 // Endpoint de administração para gerenciar convidados
-app.post('/api/admin/manage', (req, res) => {
+app.post('/api/admin/manage', async (req, res) => {
   console.log('POST /api/admin/manage called');
   console.log('Request body:', req.body);
   
   const { action, name, newName } = req.body;
   
   try {
-    const db = readDatabase();
-    
     switch (action) {
       case 'delete':
         // Remover um convidado específico
-        const deleteIndex = db.guests.findIndex(guest => 
-          guest.name.toLowerCase() === name.toLowerCase()
-        );
+        const { data: deletedGuest, error: deleteError } = await supabase
+          .from('guests')
+          .delete()
+          .eq('name', name)
+          .select();
         
-        if (deleteIndex > -1) {
-          const removedGuest = db.guests.splice(deleteIndex, 1)[0];
-          writeDatabase(db);
+        if (deleteError) {
+          console.error('Error deleting guest:', deleteError);
+          return res.status(500).json({ 
+            success: false, 
+            message: 'Erro ao remover convidado' 
+          });
+        }
+        
+        if (deletedGuest && deletedGuest.length > 0) {
           res.json({ 
             success: true, 
-            message: `Convidado "${removedGuest.name}" removido`,
-            removed: removedGuest
+            message: `Convidado "${deletedGuest[0].name}" removido`,
+            removed: deletedGuest[0]
           });
         } else {
           res.json({ 
@@ -168,18 +177,25 @@ app.post('/api/admin/manage', (req, res) => {
         
       case 'edit':
         // Editar nome de um convidado
-        const editIndex = db.guests.findIndex(guest => 
-          guest.name.toLowerCase() === name.toLowerCase()
-        );
+        const { data: updatedGuest, error: updateError } = await supabase
+          .from('guests')
+          .update({ name: newName })
+          .eq('name', name)
+          .select();
         
-        if (editIndex > -1) {
-          db.guests[editIndex].name = newName;
-          db.guests[editIndex].updatedAt = new Date().toISOString();
-          writeDatabase(db);
+        if (updateError) {
+          console.error('Error updating guest:', updateError);
+          return res.status(500).json({ 
+            success: false, 
+            message: 'Erro ao atualizar convidado' 
+          });
+        }
+        
+        if (updatedGuest && updatedGuest.length > 0) {
           res.json({ 
             success: true, 
             message: `Nome alterado de "${name}" para "${newName}"`,
-            updated: db.guests[editIndex]
+            updated: updatedGuest[0]
           });
         } else {
           res.json({ 
@@ -191,9 +207,19 @@ app.post('/api/admin/manage', (req, res) => {
         
       case 'clear':
         // Limpar toda a lista
-        db.guests = [];
-        db.clearedAt = new Date().toISOString();
-        writeDatabase(db);
+        const { error: clearError } = await supabase
+          .from('guests')
+          .delete()
+          .neq('id', 0); // Delete all records
+        
+        if (clearError) {
+          console.error('Error clearing guests:', clearError);
+          return res.status(500).json({ 
+            success: false, 
+            message: 'Erro ao limpar lista' 
+          });
+        }
+        
         res.json({ 
           success: true, 
           message: 'Lista de convidados limpa',
@@ -219,5 +245,6 @@ app.post('/api/admin/manage', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(`Database file: ${dbPath}`);
+  console.log(`Database: Supabase`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
 });
