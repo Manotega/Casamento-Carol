@@ -100,7 +100,7 @@ app.get('/api/guests', async (req, res) => {
     const { data: guests, error } = await supabase
       .from('guests')
       .select('*')
-      .order('confirmed_at', { ascending: false });
+      .order('name', { ascending: true }); // Ordena por nome alfabeticamente
     
     if (error) {
       console.error('Error getting guests:', error);
@@ -210,7 +210,7 @@ app.post('/api/admin/manage', async (req, res) => {
         const { error: clearError } = await supabase
           .from('guests')
           .delete()
-          .neq('id', 0); // Delete all records
+          .neq('name', ''); // Delete all records (qualquer nome não vazio)
         
         if (clearError) {
           console.error('Error clearing guests:', clearError);
