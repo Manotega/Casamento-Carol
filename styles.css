@@ -9,6 +9,7 @@ html, body {
 
 body {
     z-index: 10;
+    background-color: #14253E;
 }
 
 * {
@@ -194,16 +195,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5vh 0;
-}
-
-.presenca__logo {
-    position: absolute;
-    top: 2vh;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: auto;
+    padding: 5vh 0 8vh;
 }
 
 .presenca__container {
@@ -324,7 +316,7 @@ body {
     position: sticky;
     top: 0;
     width: 100%;
-    background-image: url('assets/fundo_marrom.svg');
+    background-image: url('assets/fundo-teste-2.png');
     background-size: 100% auto;
     background-repeat: repeat;
     background-position: top center;
@@ -332,7 +324,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 8vh 0;
+    padding: 10vh 0;
 }
 
 .presentes-mensagem__logo {
@@ -346,7 +338,7 @@ body {
 }
 
 .presentes-mensagem__titulo {
-    color: var(--cor-secundaria);
+    color: var(--cor-primaria);
     font-size: 2.25rem;
     font-weight: 100;
     text-align: center;
@@ -354,7 +346,7 @@ body {
 }
 
 .presentes-mensagem__texto {
-    color: var(--cor-secundaria);
+    color: var(--cor-primaria);
     font-size: 1rem;
     font-weight: 100;
     text-align: center;
@@ -475,6 +467,11 @@ footer {
 
 .footer__lucas__redes__rede {
     width: 220%;
+}
+
+.footer__lucas__redes__rede:hover {
+    transform: scale(1.2);
+    transition: all 0.3s ease;
 }
 
 .footer__lucas__copyright {
