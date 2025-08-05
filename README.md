@@ -12,9 +12,10 @@ Site de casamento moderno com sistema de confirmação de presença integrado ao
 
 ## Tecnologias
 
-- **Backend**: Node.js + Express
-- **Banco de Dados**: Supabase (PostgreSQL)
-- **Frontend**: HTML5, CSS3, JavaScript vanilla
+- **Backend**: [![NodeJS](https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)](#) [![Express.js](https://img.shields.io/badge/Express.js-%23404d59.svg?logo=express&logoColor=%2361DAFB)](#)
+- **Banco de Dados**: Supabase [![Postgres](https://img.shields.io/badge/Postgres-%23316192.svg?logo=postgresql&logoColor=white)](#)
+- **Frontend**: 
+[![CSS](https://img.shields.io/badge/CSS-639?logo=css&logoColor=fff)](#) [![HTML](https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white)](#) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000)](#)
 - **Deploy**: Render
 
 ## Estrutura do Projeto
