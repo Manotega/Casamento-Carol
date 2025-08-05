@@ -10,64 +10,63 @@
   flex-direction: column;
   align-items: center;
   padding: 5vh 2vh;
-  min-height: 80vh;
-}
-
-.presente-individual__titulo {
-  color: var(--marrom-escuro);
-  font-size: 2rem;
-  font-weight: 100;
-  text-align: center;
-  margin-bottom: 3vh;
 }
 
 .presente-individual__imagem {
-  width: 200px;
-  height: 200px;
-  margin-bottom: 3vh;
-  border: 2px solid var(--marrom-escuro);
+  width: 60%;
+  border: 3px solid var(--marrom-medio);
+  margin: 0 0 5%;
 }
 
 .presente-individual__descricao {
-  color: var(--marrom-escuro);
-  font-size: 1.2rem;
-  text-align: center;
-  line-height: 1.6;
-  margin-bottom: 4vh;
-  max-width: 600px;
-}
-
-.presente-individual__preco {
-  color: var(--marrom-escuro);
-  font-size: 2.5rem;
-  font-weight: 100;
-  margin-bottom: 4vh;
-}
-
-.presente-individual__botao {
-  padding: 2vh 6vh;
-  border: 2px solid var(--marrom-escuro);
-  border-radius: 16px;
-  background-color: var(--cor-secundaria);
+  width: 80%;
   color: var(--marrom-escuro);
   font-size: 1.5rem;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  -webkit-tap-highlight-color: transparent;
+  text-align: center;
+  line-height: 1.2;
+  margin: 0 0 15%;
 }
 
-.presente-individual__botao:hover {
-  background-color: var(--marrom-medio);
-  color: var(--cor-primaria);
-  border: 2px solid white;
-  transform: translateY(-1px);
+.presente-individual__pix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3%;
+  margin: 0 0 10%;
 }
 
-.presente-individual__botao:active {
-  background-color: white;
-  transform: translateY(0) scale(0.98);
-  transition: all 0.08s ease;
+.presente-individual__pix__imagem {
+  width: 25%;
+}
+
+.presente-individual__pix__texto {
+  font-size: 3rem;
+  font-weight: 500;
+  color: var(--marrom-medio);
+}
+
+.piquis {
+  font-size: 0.7rem;
+  font-weight: 100;
+}
+
+.presente-individual__qrcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.presente-individual__qrcode__imagem {
+  width: 50%;
+}
+
+.presente-individual__qrcode__ou {
+  font-size: 1.5rem;
+  padding: 5% 0;
+}
+
+.presente-individual__qrcode__telefone {
+  font-size: 1.75rem;
 }
 
 footer {
