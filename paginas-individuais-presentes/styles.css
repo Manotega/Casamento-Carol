@@ -16,6 +16,9 @@
   width: 60%;
   border: 3px solid var(--marrom-medio);
   margin: 0 0 5%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  height: auto;
 }
 
 .presente-individual__descricao {
