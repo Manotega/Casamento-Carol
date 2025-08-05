@@ -24,7 +24,12 @@ Site de casamento moderno com sistema de confirmação de presença integrado ao
 casamento-carol/
 ├── index.html                              # Página principal
 ├── presentes.html                          # Página de presentes
-├── paginas-individuais-presentes/         # Páginas individuais de presentes
+├── paginas-individuais-presentes/          # Páginas individuais de presentes
+    ├── compras.html
+    ├── perdidos.html
+    ├── sushi.html
+    ├── styles.css
+    └── ...
 ├── styles.css                              # Estilos principais
 ├── styles-presentes.css                    # Estilos dos presentes
 ├── script.js                               # JavaScript frontend
