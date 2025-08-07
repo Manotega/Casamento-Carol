@@ -6,7 +6,7 @@ const { createClient } = require('@supabase/supabase-js');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Supabase configuration
+// Configuração do Supabase
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
@@ -14,24 +14,24 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('.')); // Serve static files from current directory
+app.use(express.static('.')); // Servir arquivos estáticos do diretório atual
 
-// Add logging middleware
+// Middleware de logging
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
   next();
 });
 
-// API Routes
+// Rotas da API
 app.post('/api/confirm-presence', async (req, res) => {
-  console.log('POST /api/confirm-presence called');
-  console.log('Request body:', req.body);
+  console.log('POST /api/confirm-presence chamado');
+  console.log('Corpo da requisição:', req.body);
   
   try {
     const { name } = req.body;
     
     if (!name || name.trim() === '') {
-      console.log('Empty name provided');
+      console.log('Nome vazio fornecido');
       return res.status(400).json({ 
         success: false, 
         message: 'Nome é obrigatório' 
@@ -39,16 +39,16 @@ app.post('/api/confirm-presence', async (req, res) => {
     }
 
     const trimmedName = name.trim();
-    console.log('Processing name:', trimmedName);
+    console.log('Processando nome:', trimmedName);
     
-    // Check if name already exists
+    // Verifica se o nome já existe
     const { data: existingGuests, error: checkError } = await supabase
       .from('guests')
       .select('name')
       .ilike('name', trimmedName);
     
     if (checkError) {
-      console.error('Error checking existing guest:', checkError);
+      console.error('Erro ao verificar convidado existente:', checkError);
       return res.status(500).json({ 
         success: false, 
         message: 'Erro ao verificar convidado existente' 
@@ -56,28 +56,28 @@ app.post('/api/confirm-presence', async (req, res) => {
     }
     
     if (existingGuests && existingGuests.length > 0) {
-      console.log('Name already exists:', trimmedName);
+      console.log('Nome já existe:', trimmedName);
       return res.status(409).json({ 
         success: false, 
         message: 'Este nome já foi confirmado' 
       });
     }
 
-    // Add new guest
+    // Adiciona novo convidado
     const { data: newGuest, error: insertError } = await supabase
       .from('guests')
       .insert([{ name: trimmedName }])
       .select();
     
     if (insertError) {
-      console.error('Error inserting guest:', insertError);
+      console.error('Erro ao inserir convidado:', insertError);
       return res.status(500).json({ 
         success: false, 
         message: 'Erro ao salvar confirmação' 
       });
     }
     
-    console.log('Guest saved successfully:', newGuest[0]);
+    console.log('Convidado salvo com sucesso:', newGuest[0]);
     res.json({ 
       success: true, 
       message: 'Presença confirmada com sucesso!',
@@ -85,7 +85,7 @@ app.post('/api/confirm-presence', async (req, res) => {
     });
     
   } catch (error) {
-    console.error('Error confirming presence:', error);
+    console.error('Erro ao confirmar presença:', error);
     res.status(500).json({ 
       success: false, 
       message: 'Erro interno do servidor' 
@@ -93,9 +93,9 @@ app.post('/api/confirm-presence', async (req, res) => {
   }
 });
 
-// Get all confirmed guests
+// Buscar todos os convidados confirmados
 app.get('/api/guests', async (req, res) => {
-  console.log('GET /api/guests called');
+  console.log('GET /api/guests chamado');
   try {
     const { data: guests, error } = await supabase
       .from('guests')
@@ -103,21 +103,21 @@ app.get('/api/guests', async (req, res) => {
       .order('name', { ascending: true }); // Ordena por nome alfabeticamente
     
     if (error) {
-      console.error('Error getting guests:', error);
+      console.error('Erro ao buscar convidados:', error);
       return res.status(500).json({ 
         success: false, 
         message: 'Erro ao buscar convidados' 
       });
     }
     
-    console.log('Returning guests:', guests.length);
+    console.log('Retornando convidados:', guests.length);
     res.json({ 
       success: true, 
       guests: guests || [],
       total: guests ? guests.length : 0
     });
   } catch (error) {
-    console.error('Error getting guests:', error);
+    console.error('Erro ao buscar convidados:', error);
     res.status(500).json({ 
       success: false, 
       message: 'Erro ao buscar convidados' 
@@ -125,9 +125,9 @@ app.get('/api/guests', async (req, res) => {
   }
 });
 
-// Health check endpoint
+// Endpoint de verificação de saúde
 app.get('/api/health', (req, res) => {
-  console.log('GET /api/health called');
+  console.log('GET /api/health chamado');
   res.json({ 
     status: 'OK', 
     timestamp: new Date().toISOString(),
@@ -138,8 +138,8 @@ app.get('/api/health', (req, res) => {
 
 // Endpoint de administração para gerenciar convidados
 app.post('/api/admin/manage', async (req, res) => {
-  console.log('POST /api/admin/manage called');
-  console.log('Request body:', req.body);
+  console.log('POST /api/admin/manage chamado');
+  console.log('Corpo da requisição:', req.body);
   
   const { action, name, newName } = req.body;
   
@@ -154,7 +154,7 @@ app.post('/api/admin/manage', async (req, res) => {
           .select();
         
         if (deleteError) {
-          console.error('Error deleting guest:', deleteError);
+          console.error('Erro ao remover convidado:', deleteError);
           return res.status(500).json({ 
             success: false, 
             message: 'Erro ao remover convidado' 
@@ -184,7 +184,7 @@ app.post('/api/admin/manage', async (req, res) => {
           .select();
         
         if (updateError) {
-          console.error('Error updating guest:', updateError);
+          console.error('Erro ao atualizar convidado:', updateError);
           return res.status(500).json({ 
             success: false, 
             message: 'Erro ao atualizar convidado' 
@@ -206,14 +206,14 @@ app.post('/api/admin/manage', async (req, res) => {
         break;
         
       case 'clear':
-        // Limpar toda a lista
+        // Limpar toda a lista de convidados
         const { error: clearError } = await supabase
           .from('guests')
           .delete()
-          .neq('name', ''); // Delete all records (qualquer nome não vazio)
+          .neq('name', ''); // Deleta todos os registros (qualquer nome não vazio)
         
         if (clearError) {
-          console.error('Error clearing guests:', clearError);
+          console.error('Erro ao limpar lista de convidados:', clearError);
           return res.status(500).json({ 
             success: false, 
             message: 'Erro ao limpar lista' 
@@ -235,7 +235,7 @@ app.post('/api/admin/manage', async (req, res) => {
     }
     
   } catch (error) {
-    console.error('Error managing guests:', error);
+    console.error('Erro ao gerenciar convidados:', error);
     res.status(500).json({ 
       success: false, 
       message: 'Erro interno do servidor' 
@@ -244,7 +244,7 @@ app.post('/api/admin/manage', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Database: Supabase`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`Banco de dados: Supabase`);
+  console.log(`Ambiente: ${process.env.NODE_ENV || 'development'}`);
 });

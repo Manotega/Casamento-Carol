@@ -326,17 +326,6 @@ body {
     align-items: center;
     padding: 10vh 0;
 }
-
-.presentes-mensagem__logo {
-    position: absolute;
-    top: 2vh;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: auto;
-    z-index: -1;
-}
-
 .presentes-mensagem__titulo {
     color: var(--cor-primaria);
     font-size: 2.25rem;
@@ -476,4 +465,160 @@ footer {
 
 .footer__lucas__copyright {
     font-size: 0.75rem;
+}
+
+@media screen and (min-width: 768px) {
+    .logo__AC {
+        width: 13%;
+        padding: 2vh;
+    }
+
+    .inicio {
+        padding: 30vh 5vh;
+    }
+
+    .inicio__CarolAndre__texto {
+        color: white;
+        font-size: 6rem;
+    }
+
+    .inicio__fotos {
+        grid-template-columns: 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px ;
+        grid-template-rows: 42px 42px 42px 42px 42px 42px 42px 42px 42px 42px 42px 42px 42px 42px 42px;    
+    }
+
+    .inicio__fotos__foto1 {
+        width: 302.4px;
+        grid-area: 1 / 5 / 7 / 10;
+    }
+
+    .inicio__fotos__foto2 {
+        width: 268.8px;
+        grid-area: 8 / 8 / 11 / 11;
+    }
+    
+    .inicio__fotos__foto3 {
+        width: 302.4px;
+        grid-area: 6 / 1 / 6 / 4;
+    }
+
+    .convite {
+        background-image: url('assets/fundos-desktop/fundo-convite-desktop.png');
+        background-size: cover;
+    }
+
+    .convite__salmo {
+        padding: 10vh 0 0;
+        font-size: 1.25rem;
+    }
+
+    .convite__convidamos {
+        padding: 15vh 12.5vh;
+        font-size: 1.25rem;
+    }
+
+    .convite__pais {
+        padding: 0 4vh 0 2vh;
+        font-size: 1.25rem;
+    }
+
+    .convite__data-local {
+        padding: 10vh 20vh 8vh;
+    }
+
+    .convite__data-local__data {
+        font-size: 2rem;
+    }
+
+    .convite__data-local__local {
+        font-size: 1rem;
+    }
+
+    .presenca {
+        background-image: url('assets/fundos-desktop/fundo-presenca-desktop.png');
+        background-size: cover;
+        padding: 13vh 0 8vh;
+    }
+
+    .presenca__container__titulo {
+        font-size: 2.5rem;
+    }
+    
+    .presenca__textbox {
+        width: 110%;
+        padding: 1.25vh 1vh;
+        font-size: 1.25rem;
+    }
+
+    .presenca__botao {
+        padding: 1vh 5vh;
+        font-size: 1.25rem;
+    }
+
+    .presenca__texto-secundario {
+        padding: 4vh 0 10vh;
+    }
+
+    .presenca__texto-secundario__titulo {
+        font-size: 2rem;
+    }
+
+    .presenca__texto-secundario__texto {
+        font-size: 1rem;
+    }
+
+    .presenca__contador__texto {
+        font-size: 2.25rem;
+    }
+
+    .presenca__contador__dias {
+        font-size: 6rem;
+    }
+
+    .presentes-mensagem {
+        background-image: url('assets/fundos-desktop/fundo-presentes-desktop.png');
+        background-size: cover;
+        padding: 15vh 0 20vh;
+    }
+
+    .presentes-mensagem__titulo {
+        font-size: 3.5rem;
+        padding: 10vh 0 0;
+    }
+
+    .presentes-mensagem__texto {
+        padding: 5vh 5vh 5vh;
+        font-size: 1.5rem;
+    }
+
+    .presentes-mensagem__botao {
+        padding: 1vh 5vh;
+        font-size: 1.75rem;
+    }
+
+    .final__container__texto {
+        font-size: 3rem;
+    }
+
+    .footer__lucas {
+        padding: 10% 0 3%;
+    }
+
+    .footer__lucas__texto {
+        font-size: 1.25rem;
+        flex-direction: row;
+        gap: 0.5vh;
+    }
+    
+    .footer__lucas__redes {
+        gap: 15vh;
+    }
+
+    .footer__lucas__redes__rede {
+        width: 280%;
+    }
+
+    .footer__lucas__copyright {
+        font-size: 1rem;
+    }
 }

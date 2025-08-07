@@ -2,6 +2,16 @@
 
 Site de casamento moderno com sistema de confirmação de presença integrado ao Supabase.
 
+## ⚠️ Aviso Importante
+
+**O site fica inativo após 15 minutos sem usuários ativos.** Se você acessar através do link do GitHub, é provável que o site esteja inativo, o que pode causar:
+
+- **Demora no carregamento inicial** (pode levar alguns segundos)
+- **Bugs visuais temporários** durante o primeiro carregamento
+- **Funcionalidades que podem não responder imediatamente**
+
+**Recomendação**: Após o primeiro carregamento, feche o site e abra o link novamente para garantir que não haja erros de visualização ou funcionalidade.
+
 ## Funcionalidades
 
 - **Confirmação de presença** com validação em tempo real

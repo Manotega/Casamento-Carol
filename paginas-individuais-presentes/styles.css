@@ -6,71 +6,71 @@
 }
 
 .presente-individual {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5vh 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5vh 2vh;
 }
 
 .presente-individual__imagem {
-  width: 60%;
-  border: 3px solid var(--marrom-medio);
-  margin: 0 0 5%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  height: auto;
+    width: 60%;
+    border: 3px solid var(--marrom-medio);
+    margin: 0 0 5%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    height: auto;
 }
 
 .presente-individual__descricao {
-  width: 80%;
-  color: var(--marrom-escuro);
-  font-size: 1.5rem;
-  text-align: center;
-  line-height: 1.2;
-  margin: 0 0 15%;
+    width: 80%;
+    color: var(--marrom-escuro);
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 1.2;
+    margin: 0 0 15%;
 }
 
 .presente-individual__pix {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3%;
-  margin: 0 0 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3%;
+    margin: 0 0 10%;
 }
 
 .presente-individual__pix__imagem {
-  width: 25%;
+    width: 25%;
 }
 
 .presente-individual__pix__texto {
-  font-size: 3rem;
-  font-weight: 500;
-  color: var(--marrom-medio);
+    font-size: 3rem;
+    font-weight: 500;
+    color: var(--marrom-medio);
 }
 
 .piquis {
-  font-size: 0.7rem;
-  font-weight: 100;
+    font-size: 0.7rem;
+    font-weight: 100;
 }
 
 .presente-individual__qrcode {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .presente-individual__qrcode__imagem {
-  width: 50%;
+    width: 50%;
 }
 
 .presente-individual__qrcode__ou {
-  font-size: 1.5rem;
-  padding: 5% 0;
+    font-size: 1.5rem;
+    padding: 5% 0;
 }
 
 .presente-individual__qrcode__telefone {
-  font-size: 1.75rem;
-  color: black;
+    font-size: 1.75rem;
+    color: black;
 }
 
 footer {
@@ -79,4 +79,54 @@ footer {
     margin: 0;
     background-color: var(--marrom-medio);
     z-index: 12;
+}
+
+@media screen and (min-width: 768px) {
+    .logo {
+        width: 90%;
+        padding: 2vh 5% 2vh;
+    }
+
+    .presente-individual__imagem {
+        width: 50%;
+    }
+
+    .presente-individual__descricao {
+        font-size: 1.75rem;
+        width: 85%;
+        margin: 0 0 10%;
+    }
+
+    .presente-individual__pix {
+        margin: 0 0 8%;
+    }
+
+    .presente-individual__pix__imagem {
+        width: 30%;
+    }
+
+    .presente-individual__pix__texto {
+        font-size: 5rem;
+    }
+
+    .piquis {
+        font-size: 1.5rem;
+    }
+    
+    .presente-individual__qrcode__imagem {
+        width: 40%;
+    }
+
+    .presente-individual__qrcode__ou {
+        font-size: 2rem;
+        padding: 0;
+    }
+
+    .presente-individual__qrcode__telefone {
+        font-size: 2rem;
+    }
+
+    footer {
+        padding: 2% 0;
+    }
 }

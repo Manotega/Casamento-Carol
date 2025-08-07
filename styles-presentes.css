@@ -26,6 +26,7 @@ body {
     background-position: top;
     background-repeat: repeat;
     background-color: var(--cor-secundaria);
+    overflow-x: hidden;
 }
 
 .header__botao {
@@ -70,7 +71,6 @@ body {
     align-items: center;
     text-align: center;
     justify-content: space-between;
-    /* border: 2px solid rgba(0, 0, 0, 0.2); */
     width: 40%;
     padding: 2%;
     margin: 0 0 8%;
@@ -176,4 +176,53 @@ body {
 
 .footer__lucas__copyright {
     font-size: 0.75rem;
+}
+
+@media screen and (min-width: 768px) {
+    .header__botao {
+        width: 7%;
+        margin: 3vh 0 0 4vh;
+    }
+
+    .logoo {
+        width: 90%;
+        padding: 2vh 5% 8vh;
+    }
+    
+    .logoo__desenho {
+        width: 10%;
+    }
+
+    .presentes {
+        margin: 0 5%;
+    }
+
+    .presentes__container {
+        width: 37%;
+        font-size: 1.25rem;
+        margin: 0 0 10%;
+    }
+
+    .footer__presentes {
+        padding: 2.5% 0;
+    }
+
+    .footer__lucas__texto {
+        font-size: 1.25rem;
+        flex-direction: row;
+        gap: 0.5vh;
+        padding: 0;
+    }
+
+    .footer__lucas__redes {
+        gap: 15vh;
+    }
+
+    .footer__lucas__redes__rede {
+        width: 250%;
+    }
+
+    .footer__lucas__copyright {
+        font-size: 1rem;
+    }
 }
