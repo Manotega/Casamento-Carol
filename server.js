@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
+const fs = require('fs');
 const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
@@ -15,6 +17,45 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 app.use(cors());
 app.use(express.json());
 app.use(express.static('.')); // Servir arquivos estáticos do diretório atual
+
+// Redirects canônicos para evitar exibir .html nas URLs
+app.get(['/index.html', '/presentes.html'], (req, res) => {
+  const target = req.path === '/index.html' ? '/' : '/presentes';
+  return res.redirect(301, target);
+});
+
+app.get('/paginas-individuais-presentes/:slug.html', (req, res) => {
+  return res.redirect(301, `/presentes/${req.params.slug}`);
+});
+
+// URLs limpas: mapear /presentes/:slug -> paginas-individuais-presentes/:slug.html
+// e mapear qualquer caminho sem extensão para arquivo .html correspondente na raiz
+app.get(/^\/(?!api\/).*$/, (req, res, next) => {
+  // Ignora requisições que já têm extensão (ex.: .css, .js, .png etc.)
+  if (path.extname(req.path)) return next();
+
+  // Regra específica: /presentes/:slug -> paginas-individuais-presentes/:slug.html
+  const matchGift = req.path.match(/^\/presentes\/([^\/]+)\/?$/);
+  if (matchGift) {
+    const fileForGift = path.join(
+      __dirname,
+      'paginas-individuais-presentes',
+      `${matchGift[1]}.html`
+    );
+    if (fs.existsSync(fileForGift)) {
+      return res.sendFile(fileForGift);
+    }
+  }
+
+  // Regra genérica: "/abc" -> "abc.html" na raiz do projeto
+  const cleanPath = req.path.replace(/\/+$/, '') || '/index';
+  const candidate = path.join(__dirname, `${cleanPath}.html`);
+  if (fs.existsSync(candidate)) {
+    return res.sendFile(candidate);
+  }
+
+  return next();
+});
 
 // Middleware de logging
 app.use((req, res, next) => {

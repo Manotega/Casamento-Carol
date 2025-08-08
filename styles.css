@@ -675,7 +675,7 @@ footer {
     }
 
     .convite__data-local {
-        padding: 13vh 30vh 10vh;
+        padding: 13vh 35vh 10vh;
     }
 
     .presenca__container {
@@ -698,11 +698,11 @@ footer {
     }
 
     .presenca__texto-secundario {
-        padding: 7vh 0 7vh;
+        padding: 10vh 0 7vh;
     }
 
     .presenca__contador {
-        padding: 2vh 0;
+        padding: 0;
     }
 
     .presenca__contador__texto {
@@ -736,6 +736,18 @@ footer {
     }
 
     .footer__logo {
-        padding: 5% 0 5% 5%;
+        padding: 0 0 0 5%;
+    }
+
+    .footer__lucas {
+        padding: 10% 0 2%;
+    }
+
+    .footer__lucas__redes {
+        gap: 20vh;
+    }
+
+    .footer__lucas__redes__rede {
+        width: 200%;
     }
 }
