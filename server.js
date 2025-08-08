@@ -8,10 +8,11 @@ const { createClient } = require('@supabase/supabase-js');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Configuração do Supabase
+// Configuração do Supabase (tolerante a ambiente local sem .env)
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabaseEnabled = Boolean(supabaseUrl && supabaseKey);
+const supabase = supabaseEnabled ? createClient(supabaseUrl, supabaseKey) : null;
 
 // Middleware
 app.use(cors());
@@ -69,6 +70,12 @@ app.post('/api/confirm-presence', async (req, res) => {
   console.log('Corpo da requisição:', req.body);
   
   try {
+    if (!supabaseEnabled) {
+      return res.status(503).json({
+        success: false,
+        message: 'API indisponível no ambiente local. Configure SUPABASE_URL e SUPABASE_ANON_KEY no arquivo .env.'
+      });
+    }
     const { name } = req.body;
     
     if (!name || name.trim() === '') {
@@ -138,6 +145,12 @@ app.post('/api/confirm-presence', async (req, res) => {
 app.get('/api/guests', async (req, res) => {
   console.log('GET /api/guests chamado');
   try {
+    if (!supabaseEnabled) {
+      return res.status(503).json({
+        success: false,
+        message: 'API indisponível no ambiente local. Configure SUPABASE_URL e SUPABASE_ANON_KEY no arquivo .env.'
+      });
+    }
     const { data: guests, error } = await supabase
       .from('guests')
       .select('*')
@@ -185,6 +198,12 @@ app.post('/api/admin/manage', async (req, res) => {
   const { action, name, newName } = req.body;
   
   try {
+    if (!supabaseEnabled) {
+      return res.status(503).json({
+        success: false,
+        message: 'API indisponível no ambiente local. Configure SUPABASE_URL e SUPABASE_ANON_KEY no arquivo .env.'
+      });
+    }
     switch (action) {
       case 'delete':
         // Remover um convidado específico
