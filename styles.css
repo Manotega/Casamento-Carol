@@ -5,6 +5,7 @@ html, body {
     padding: 0;
     min-height: 100%;
     font-family: "GFS Didot", serif;
+    /* overflow-x: hidden; */
 }
 
 body {
@@ -376,7 +377,7 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background-image: url('assets/fundo_final.svg');
+    /* background-image: url('assets/fundo_final.svg'); */
     background-size:contain;
     background-repeat: no-repeat;
     background-position: top center;
@@ -388,6 +389,10 @@ body {
     max-width: 100%;
     position: absolute;
     z-index: -1;
+}
+
+.final__fundo_desktop {
+    display: none;
 }
 
 .final__container {
@@ -600,6 +605,10 @@ footer {
         font-size: 3rem;
     }
 
+    .final__fundo {
+        min-width: 100%;
+    }
+
     .footer__lucas {
         padding: 10% 0 3%;
     }
@@ -620,5 +629,113 @@ footer {
 
     .footer__lucas__copyright {
         font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .logo__AC {
+        width: 10%;
+        padding: 3vh;
+    }
+
+    .inicio {
+        padding: 25vh 5vh 80vh;
+    }
+
+    .inicio__fotos {
+        grid-template-columns: 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px 33.6px ;
+        grid-template-rows: 42px 42px 42px 42px 42px 42px 42px 42px 42px 42px 42px 42px 42px 42px 42px;    
+    }
+
+    .inicio__fotos__foto1 {
+        width: 302.4px;
+        grid-area: 1 / 7 / 7 / 10;
+    }
+
+    .inicio__fotos__foto2 {
+        width: 268.8px;
+        grid-area: 9 / 12 / 11 / 11;
+    }
+    
+    .inicio__fotos__foto3 {
+        width: 302.4px;
+        grid-area: 5 / 1 / 6 / 4;
+    }
+
+    .convite__salmo {
+        padding: 15vh 0 0;
+    }
+
+    .convite__convidamos {
+        padding: 13vh 12.5vh;
+    }
+
+    .convite__pais {
+        padding: 0 5vh 0 2.5vh;
+    }
+
+    .convite__data-local {
+        padding: 13vh 30vh 10vh;
+    }
+
+    .presenca__container {
+        padding: 2vh 0 0;
+    }
+
+    .presenca__container__titulo {
+        padding: 0;
+        font-size: 2.25rem;
+    }
+
+    .presenca__textbox {
+        padding: 1.5vh 1vh;
+        margin: 1.5vh 0;
+        width: 120%;
+    }
+
+    .presenca__botao {
+        padding: 1.5vh 7vh;
+    }
+
+    .presenca__texto-secundario {
+        padding: 7vh 0 7vh;
+    }
+
+    .presenca__contador {
+        padding: 2vh 0;
+    }
+
+    .presenca__contador__texto {
+        font-size: 2.25rem;
+    }
+
+    .presentes-mensagem__botao {
+        padding: 1vh 7vh;
+        margin: 5vh 0;
+    }
+
+    .final__fundo {
+        display: none;
+    }
+
+    .final__fundo_desktop {
+        display: block;
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+    }
+
+    .final__container__container {
+        padding: 5% 0;
+    }
+
+    .final__container__texto {
+        width: 30%;
+        padding: 10% 0;
+        font-size: 2.5rem;
+    }
+
+    .footer__logo {
+        padding: 5% 0 5% 5%;
     }
 }
