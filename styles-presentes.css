@@ -226,3 +226,29 @@ body {
         font-size: 1rem;
     }
 }
+
+@media screen and (min-width: 1024px) {
+    .header__botao {
+        width: 5%;
+    }
+
+    .logoo {
+        padding: 2vh 5% 10vh;
+    }
+
+    .logo__desenho {
+        width: 15%;
+    }
+
+    .presentes__container {
+        width: 30%;
+    }
+
+    .presentes__container__preco {
+        padding: 5% 0;
+    }
+
+    .presentes__container__botao {
+        padding: 2% 20%;
+    }
+}

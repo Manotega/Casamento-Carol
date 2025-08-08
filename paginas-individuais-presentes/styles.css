@@ -130,3 +130,45 @@ footer {
         padding: 2% 0;
     }
 }
+
+@media screen and (min-width: 1024px) {
+    .logo {
+        width: 80%;
+        padding: 2vh 10%;
+    }
+
+    .presente-individual {
+        padding: 8vh 0;
+    }
+
+    .presente-individual__imagem {
+        width: 30%;
+        margin: 0 0 2%;
+    }
+
+    .presente-individual__descricao {
+        margin: 0 0 15%;
+        width: 60%;
+    }
+
+    .presente-individual__pix {
+        margin: 0 0 2%;
+    }
+
+    .presente-individual__pix__imagem {
+        width: 20%;
+    }
+
+    .presente-individual__qrcode__imagem {
+        width: 30%;
+    }
+
+    .presente-individual__qrcode__ou {
+        font-size: 1.5rem;
+        padding: 0 0 0.5%;
+    }
+
+    .presente-individual__qrcode__telefone {
+        font-size: 1.75rem;
+    }
+}
