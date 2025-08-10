@@ -251,4 +251,18 @@ body {
     .presentes__container__botao {
         padding: 2% 20%;
     }
+
+    .footer__presentes {
+        padding: 1% 0;
+    }
+
+    .footer__lucas__redes {
+        gap: 15vh;
+    }
+
+    .footer__lucas__redes__rede {
+        width: 200%;
+    }
+
+    .footer__lucas__copyright {}
 }
