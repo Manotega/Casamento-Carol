@@ -173,7 +173,7 @@ footer {
     }
 }
 
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 1800px) {
     .presente-individual {
         padding: 5vh 0;
     }

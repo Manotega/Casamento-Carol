@@ -756,7 +756,7 @@ footer {
     }
 }
 
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 1800px) {
     .inicio__video-bg {
         display: none;
     }
@@ -879,10 +879,6 @@ footer {
     .presenca__contador__dias {
         font-size: 9rem;
         padding: 0 0 8vh;
-    }
-
-    .presentes-mensagem {
-
     }
 
     .presentes-mensagem__titulo {

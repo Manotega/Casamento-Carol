@@ -263,11 +263,9 @@ body {
     .footer__lucas__redes__rede {
         width: 200%;
     }
-
-    .footer__lucas__copyright {}
 }
 
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 1800px) {
     .header__botao {
         width: 3%;
         margin: 5vh 0 0 10vh;
