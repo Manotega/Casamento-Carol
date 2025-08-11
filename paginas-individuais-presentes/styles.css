@@ -172,3 +172,41 @@ footer {
         font-size: 1.75rem;
     }
 }
+
+@media screen and (min-width: 1920px) {
+    .presente-individual {
+        padding: 5vh 0;
+    }
+
+    .presente-individual__imagem {
+        width: 20%;
+        margin: 0 0 1.5%;
+    }
+
+    .presente-individual__descricao {
+        font-size: 2.25rem;
+        width: 40%;
+        margin: 0 0 5%;
+    }
+
+    .presente-individual__pix {
+        margin: 0 0 2%;
+    }
+
+    .presente-individual__pix__imagem {
+        width: 25%;
+    }
+
+    .presente-individual__qrcode__imagem {
+        width: 20%;
+    }
+
+    .presente-individual__qrcode__ou {
+        font-size: 1.5rem;
+        padding: 0 0 0.5%;
+    }
+
+    .presente-individual__qrcode__telefone {
+        font-size: 3rem;
+    }
+}

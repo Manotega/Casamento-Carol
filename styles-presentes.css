@@ -266,3 +266,76 @@ body {
 
     .footer__lucas__copyright {}
 }
+
+@media screen and (min-width: 1920px) {
+    .header__botao {
+        width: 3%;
+        margin: 5vh 0 0 10vh;
+    }
+
+    .logoo {
+        padding: 2vh 5% 8vh;
+    }
+
+    .logo__desenho {
+        width: 8%;
+    }
+
+    .presentes {
+        margin: 0 12%;
+    }
+
+    .presentes__container {
+        padding: 1.5%;
+        width: 22%;
+        margin: 0 2% 7%;
+        text-align: center;
+        align-items: center;
+    }
+
+    .presentes__container__texto {
+        font-size: 1.5rem;
+        padding: 3% 0 0;
+        width: 110%;
+        text-align: center;
+        display: block;
+    }
+
+    .presentes__container__preco {
+        padding: 8% 0;
+        font-size: 1.75rem;
+    }
+
+    .presentes__container__botao {
+        margin: 0;
+        font-size: 1.75rem;
+        padding: 4% 38%;
+        line-height: 1.3;
+    }
+
+    .footer__presentes {
+        margin: 0 0;
+        padding: 1% 0 0.5%;
+    }
+
+    .footer__lucas {
+        padding: 0;
+    }
+
+    .footer__lucas__texto {
+        font-size: 1.75rem;
+    }
+
+    .footer__lucas__redes {
+        gap: 22vh;
+        padding: 0.5% 0;
+    }
+
+    .footer__lucas__redes__rede {
+        width: 300%;
+    }
+
+    .footer__lucas__copyright {
+        font-size: 1.5rem;
+    }
+}

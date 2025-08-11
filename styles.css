@@ -61,6 +61,10 @@ body {
     z-index: -1;
 }
 
+.inicio__fundo-desktop {
+    display: none;
+}
+
 .inicio__CarolAndre {
     position: fixed;
     display: flex;
@@ -749,5 +753,185 @@ footer {
 
     .footer__lucas__redes__rede {
         width: 200%;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .inicio__video-bg {
+        display: none;
+    }
+
+    .inicio__fundo-desktop {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: -1;
+    }
+
+    .logo__AC {
+        width: 6%;
+        padding: 2vh;
+    }
+
+    .inicio {
+        padding: 25vh 5vh 50vh;
+    }
+
+    .inicio__CarolAndre {
+        padding: 6vh 0 0;
+    }
+
+    .inicio__CarolAndre__texto {
+        font-size: 9rem;
+    }
+
+    .inicio__fotos {
+        grid-template-columns: 67.2px 67.2px 67.2px 67.2px 67.2px 67.2px 67.2px 67.2px 67.2px 67.2px 67.2px 67.2px 67.2px 67.2px 67.2px 67.2px 67.2px 67.2px;
+        grid-template-rows: 84px 84px 84px 84px 84px 84px 84px 84px 84px 84px 84px 84px 84px 84px;
+    }
+
+    .inicio__fotos__foto1 {
+        width: 504px;
+        grid-area: 1 / 7 / 7 / 10;
+    }
+
+    .inicio__fotos__foto2 {
+        width: 453.6px;
+        grid-area: 8 / 12 / 11 / 11;
+    }
+    
+    .inicio__fotos__foto3 {
+        width: 504px;
+        grid-area: 5 / 2 / 6 / 4;
+    }
+
+    .convite__salmo {
+        font-size: 1.75rem;
+        padding: 10vh 0 0;
+    }
+
+    .convite__convidamos {
+        font-size: 1.75rem;
+        padding: 19.5vh 12.5vh;
+    }
+
+    .convite__pais {
+        font-size: 1.75rem;
+        padding: 0 7.5vh 0 5vh;
+    }
+
+    .convite__data-local {
+        padding: 0 65vh 15vh;
+    }
+
+    .convite__data-local__data {
+        font-size: 4rem;
+        padding: 10vh 0 0;
+    }
+
+    .convite__data-local__local {
+        font-size: 1.75rem;
+    }
+
+    .presenca {
+        padding: 10vh 0 5vh;
+    }
+
+    .presenca__container {
+        padding: 15vh 0 0;
+    }
+
+    .presenca__container__titulo {
+        font-size: 4rem;
+    }
+
+    .presenca__textbox {
+        font-size: 1.5rem;
+        padding: 1.25vh 1vh;
+        width: 80%;
+    }
+
+    .presenca__botao {
+        font-size: 1.75rem;
+        padding: 1vh 7vh;
+    }
+
+    .presenca__texto-secundario {
+        padding: 8vh 0 10vh;
+    }
+
+    .presenca__texto-secundario__titulo {
+        font-size: 3.75rem;
+    }
+
+    .presenca__texto-secundario__texto {
+        font-size: 1.75rem;
+    }
+
+    .presenca__contador__texto {
+        font-size: 3.5rem;
+    }
+
+    .presenca__contador__dias {
+        font-size: 9rem;
+        padding: 0 0 8vh;
+    }
+
+    .presentes-mensagem {
+
+    }
+
+    .presentes-mensagem__titulo {
+        font-size: 6rem;
+        padding: 10vh 0 0;
+        line-height: 1;
+    }
+
+    .presentes-mensagem__texto {
+        font-size: 2.5rem;
+        padding: 10vh 40vh;
+        line-height: 1.7;
+    }
+
+    .presentes-mensagem__botao {
+        font-size: 2.25rem;
+        padding: 1.25vh 9vh;
+        margin: 0;
+    }
+
+    .final__container__container {
+        padding: 0 0 10%;
+    }
+
+    .final__container__texto {
+        font-size: 6rem;
+    }
+
+    .footer__logo {
+        width: 45%;
+    }
+
+    .footer__lucas {
+        padding: 10% 0 1%;
+    }
+
+    .footer__lucas__texto {
+        font-size: 2rem;
+    }
+
+    .footer__lucas__redes {
+        gap: 22vh;
+    }
+
+    .footer__lucas__redes__rede {
+        width: 300%;
+    }
+
+    .footer__lucas__copyright {
+        font-size: 1.25rem;
     }
 }
